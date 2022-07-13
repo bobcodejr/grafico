@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dollar</title>
+
+    <style src="./css/style.css"></style>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        @import url('href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;600;700&family=Roboto:wght@300&display=swap" rel="stylesheet');
+        *{margin: 0; padding: 0; box-sizing: border-box; font-family: 'Roboto', sans-serif;}
+
+        body{margin: 0 auto; width: 100%; height: auto;overflow: hidden;}
+        .pixel-pattern{background-image: url(./img/pixel-pattern.png); background-repeat: repeat; background-size: 2px 2px;}
+        .main{margin: 2% auto; width: 52%; height: 300px; border: 1px solid #ccc; display: block; overflow: hidden;}
+        .graphic{margin: 2% auto;width: 50%;}
+        .txt{margin: 2% auto; width: 96%; height: auto; font-family: 'Roboto', sans-serif;}
+        .titulo{margin: 2% auto; width: 96%; height: auto; font-family: 'Roboto', sans-serif; font-size: .9em; color: #ccc;}
+        .boxInt{margin: 0px 0px;width: 50%;height: 80px;line-height: 60px;display: block;overflow: hidden;border: 1px solid #ccc;padding: 0 10px;}
+        .boxReal{margin: -80px 354px; width: 50%; height: 80px; line-height: 60px; display: block; overflow: hidden; border: 1px solid #ccc; padding: 0 10px;}
+        .boxLinha{margin: 15px auto;width: 100%;height: 58px;display: block;overflow: hidden;}
+        .bar{width: 354px;height: 55px;margin: 0 -11px;padding: 0 10px;border: 1px solid rgb(242, 242, 242);font-family: 'Roboto', sans-serif;font-size: 2em;color: #ccc;background-color: rgba(red, green, blue, 0.5)}
+    </style>
+
+</head>
+<body>
+    
+    <section class="main pixel-pattern">
+        <div>
+            <h4 class="txt">Gráfico</h4>
+            <div class="graphic"><canvas id="myChart" style="width: 500px; max-width: 500px"></canvas></div>    
+        </div>
+        <div class="boxLinha">
+            <div class="boxInt">
+                <div class="box-texto"></div>
+                <div class=""><form><input id="moneyDollar" class="bar" placeholder="Dollar" type="number"></form></div></div>
+            <div class="boxReal"><form><input id="moneyReal" class="bar" placeholder="Real" type="number"></form></div></div>
+        </div>
+    </section>
+    
+    <script>
+        const ctx = document.getElementById('myChart')
+        const labels = [
+            'January','February','March','April','May','June','Agust', 'September', ''
+        ];
+
+        const data = {
+            labels: labels,
+            datasets: [{
+            label: 'My First dataset',
+            backgroundColor: 'rgb(255, 99, 132)',
+            borderColor: 'rgb(255, 99, 132)',
+            fill: true,
+            data: [0, 10, 10, 40, 20, 30, 45],
+            }]
+        };
+
+        let smooth = false;
+
+        const actions = [
+        {
+            name: 'Smooth',
+            handler(chart) {
+            smooth = !smooth;
+            chart.options.elements.line.tension = smooth ? 0.4 : 0;
+            chart.update();
+            }
+        }
+        ];
+
+        const config = {
+            type: 'line',
+            data: data,
+            options: {
+                responsive: true
+            }
+        };
+
+        const myChart = new Chart(ctx, config)
+    </script>
+    
+</body>
+</html>
